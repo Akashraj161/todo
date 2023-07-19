@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./index.css";
 
 function App() {
+  const [newItem, setNewItem] = useState("");
+  const [todo, setTodo] = useState([]);
+
+  function handleChange(e) {
+    setNewItem(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <form onSubmit={handleSubmit} className="new-item-form">
+        <div className="form-row">
+          <label htmlFor="item">New Item</label>
+          <input
+            type="text"
+            id="item"
+            value={newItem}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="btn">Add</button>
+      </form>
+      <h2 className="header">To Do List</h2>
+      <ul className="list">
+        <li>
+          <label>
+            <input type="checkbox" />
+            Item 1
+          </label>
+          <button className="btn btn-danger">Delete</button>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" />
+            Item 2
+          </label>
+          <button className="btn btn-danger">Delete</button>
+        </li>
+      </ul>
+    </>
   );
 }
 
